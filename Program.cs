@@ -13,7 +13,7 @@ namespace Janken2
     /// </summary>
     public class Program
     {
-        public enum Janken                  // 16~21は編集中
+        public enum Janken                  // 16~21に関する部分は編集中
         {
             Rock = 1, // じゃんけん:ぐー           
             Paper,    // じゃんけん:ぱー
