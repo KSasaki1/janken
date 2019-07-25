@@ -13,12 +13,12 @@ namespace Janken2
     /// </summary>
     public class Program
     {
-        public enum Janken
+        public enum Janken                  // 16~21は編集中
         {
-            Rock = 1, // じゃんけん:ぐー
+            Rock = 1, // じゃんけん:ぐー           
             Paper,    // じゃんけん:ぱー
             Scissors,  // じゃんけん:ちょき
-        }
+        }                                   
 
         /// <summary>
         /// やめるを選択するまでプレイ
