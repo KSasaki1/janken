@@ -1,135 +1,119 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// janken
 
-namespace janken2
+namespace Janken2
 {
-    class Program
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// じゃんけんゲーム
+    /// </summary>
+    public class Program
     {
-
-        static void Main(string[] args)
-        { 
-            bool GamePlay = true;
-            GameMaster GM = new GameMaster();
-
-            while (GamePlay == true)
-            {
-                string result = JankenGameMain();
-                GamePlay = GM.Result(result);
-            }
-               
+        public enum Janken
+        {
+            Rock = 1, // じゃんけん:ぐー
+            Paper,    // じゃんけん:ぱー
+            Scissors,  // じゃんけん:ちょき
         }
 
-
-        //コンピューターとのじゃんけんの勝敗を決める
-        static string JankenGameMain()
+        /// <summary>
+        /// やめるを選択するまでプレイ
+        /// </summary>
+        /// <param name="args">引数なし</param>
+        private static void Main(string[] args)
         {
-            int PlayerHand;
-            int ComputerHand;
-            Random CPhandRandom = new System.Random();    //CPプレイヤーの手となる1～３の乱数を作る
+            bool gamePlay = true;
+            JankenGameMaster.GameMaster gm = new JankenGameMaster.GameMaster();
 
-            //プレイヤーの手を入力
-            Console.WriteLine("imput a number (rock = 1, paper = 2, scissors = 3)");
-            PlayerHand = int.Parse(Console.ReadLine());
-
-            //１、２、３のどれかを選択するまでプレイヤーの手を入力
-            while (PlayerHand > 3 || PlayerHand < 1)
+            while (gamePlay)
             {
-                Console.WriteLine("imput a collect number (rock = 1, paper = 2, scissors = 3)");
-                PlayerHand = int.Parse(Console.ReadLine());
+                string result = JankenGameMain();
+                gamePlay = gm.Result(result);
+            }
+        }
+
+        /// <summary>
+        /// じゃんけんを実行して勝敗を決める
+        /// </summary>
+        /// <returns>返り値なし</returns>
+        private static string JankenGameMain()
+        {
+            int playerHand;
+            int computerHand1, computerHand2;
+            int rock = 1, paper = 2, scissors = 3;
+            Random doHandRandom = new System.Random(); // CPプレイヤーの手となる1～３の乱数を作る
+
+            // プレイヤーの手を入力
+            Console.Write("input a number (ROCK = 1, PAPER = 2, SCISSORS = 3)>>");
+            playerHand = int.Parse(Console.ReadLine());
+
+            // １、２、３のどれかを選択するまでプレイヤーの手を入力
+            while (playerHand > 3 || playerHand < 1)
+            {
+                Console.Write("input a correct number (ROCK = 1, PAPER = 2, SCISSORS = 3)>>");
+                playerHand = int.Parse(Console.ReadLine());
             }
 
-            //コンピュータの出す手を１～３のうちから決める
-            ComputerHand = CPhandRandom.Next(1, 4);
-            Console.WriteLine("your hand:" + PlayerHand + " vs " + "CP's hand:" + ComputerHand);
+            // コンピュータ1の出す手を１～３のうちから決める
+            computerHand1 = doHandRandom.Next(1, 4);
 
-            //以下勝敗引き分けの判定とそれに対応した値を返す処理
+            // コンピュータ2の出す手を１～３のうちから決める
+            computerHand2 = doHandRandom.Next(1, 4);
 
-            //勝ちの判定
-            if ((PlayerHand == 1 && ComputerHand == 3) || (PlayerHand == 2 && ComputerHand == 1) || (PlayerHand == 3 && ComputerHand == 2))
+            // 全プレイヤーの手を表示
+            Console.WriteLine("<You:" + ConvertJankenHands(playerHand) + "> vs " + "<CP1:" + ConvertJankenHands(computerHand1) + "> vs " + "<CP2:" + ConvertJankenHands(computerHand2) + ">");
+
+            // 以下勝敗引き分けの判定とそれに対応した値を返す処理
+
+            // 勝ちの判定
+            if ((playerHand == rock && computerHand1 == scissors && computerHand2 == scissors) || (playerHand == paper && computerHand1 == rock && computerHand2 == rock) || (playerHand == scissors && computerHand1 == paper && computerHand2 == paper)　||
+                (playerHand == rock && computerHand1 == rock && computerHand2 == scissors) || (playerHand == paper && computerHand1 == paper && computerHand2 == rock) || (playerHand == scissors && computerHand1 == scissors && computerHand2 == paper)　||
+                (playerHand == rock && computerHand1 == scissors && computerHand2 == rock) || (playerHand == paper && computerHand1 == rock && computerHand2 == paper) || (playerHand == scissors && computerHand1 == paper && computerHand2 == scissors))
             {
                 Console.WriteLine("-----YOU WIN-----");
                 Console.WriteLine();
                 return "win";
             }
-            //引き分けの判定
-            else if (PlayerHand == ComputerHand)
+
+            // 引き分けの判定
+            else if ((playerHand == computerHand1 && playerHand == computerHand2) || (playerHand != computerHand1 && playerHand != computerHand2 && computerHand1 != computerHand2))
             {
-                Console.WriteLine("------DRAW!------");
+                Console.WriteLine("------DRAW------");
                 Console.WriteLine();
                 Console.WriteLine("try again");
                 return "draw";
             }
-            //負けの判定
+
+            // 負けの判定
             else
             {
                 Console.WriteLine("-----YOU LOSE-----");
                 Console.WriteLine();
                 return "lose";
             }
-                                                             //return Tuple.Create(PHand, CPHand);   //プレイヤーとｃｐの手を返り値として返す
         }
-    }
 
-    //ゲームをプレイするか否か、結果確認の処理をまとめたもの
-    class GameMaster
-    {
-
-        static int WinCount = 0;      //プレイヤーの勝利数
-        static int LoseCount = 0;      //プレイヤーの敗北数
-        static int DrawCount = 0;      //引き分け数
-        static int GameCount = 0;      //ゲームのプレイ回数
-
-
-        //勝敗引き分けを判定するメソッド
-        //static string IsJudge(int PHand, int CPHand){}
-
-        public bool Result(string result)
+        /// <summary>
+        /// じゃんけんの手となる値を対応するじゃんけんの手の文字列として返す
+        /// </summary>
+        /// <param name="handNumber"> JankenGameMainで出した数値が入る </param>
+        /// <returns>1:ROCK 2:PAPER 3:SCISSORS </returns>
+        private static string ConvertJankenHands(int handNumber)
         {
-            GameCount++;
-
-            //勝敗が決まった場合はゲームを続けるか結果確認をしてゲームを終了するか選ぶ
-            //引き分けの場合は再度じゃんけんの手を入力する処理へ戻る
-            switch (result)
+            switch (handNumber)
             {
-                case "win":
-                    WinCount++;
-                    goto gamescore;
-
-                case "lose":
-                    LoseCount++;
-                    goto gamescore;
-
-                case "draw":
-                    DrawCount++;
-                    return true;
-
+                case 1:
+                    return "ROCK";
+                case 2:
+                    return "PAPER";
+                case 3:
+                    return "SCISSORS";
                 default:
-                    return true;
-
-//勝ち、負けの場合の処理
-gamescore:
-                    Console.Write("continue?(yes:y, no:n)>>");
-                    char Wannaplay = char.Parse(Console.ReadLine());
-                    if (char.ToLower(Wannaplay) == 'n')
-                    {
-                        Console.WriteLine("your {0}games of result is [win:{1}, lose:{2}, draw:{3}]", GameCount, WinCount, LoseCount, DrawCount);
-                        return false;
-                    }
-                    else if (Wannaplay == 'y')
-                    {
-                        Console.WriteLine("play one more time");
-                        Console.WriteLine();
-                        return true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("play one more time");
-                        Console.WriteLine();
-                        return true;
-                    }
+                    return "ERROR";
             }
         }
     }
