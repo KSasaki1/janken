@@ -1,10 +1,4 @@
-﻿using Players;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Janken
 {
@@ -15,9 +9,9 @@ namespace Janken
         /// </summary>
         enum JankenHand
         {
-        rock = 1,
-        paper,
-        scissors
+            rock = 1,
+            paper,
+            scissors
         }
 
         /// <summary>
@@ -26,7 +20,6 @@ namespace Janken
         /// </summary>
         static void Main()
         {
-
             int shiftNumber = 1;    // シフト演算に使う2進数の'1'
 
             // 以下の7つの変数は論理和を用いたシフト演算の計算結果。
@@ -49,7 +42,7 @@ namespace Janken
             // 通常プレイヤーの数を決定。
             // これに伴いプレイヤー数に対応したじゃんけんの手を格納する配列、プレイヤーごとの勝利回数を格納する配列を作成。
             Console.Write("プレイヤーは何人?");
-            int playerCount = int.Parse(Console.ReadLine()); 
+            int playerCount = int.Parse(Console.ReadLine());
             int[] playerHandArray = new int[playerCount];
             int[] playerWinRateArray = new int[playerCount];
 
@@ -65,9 +58,7 @@ namespace Janken
 
             // 以下よりプレイヤーの指定した数だけじゃんけんをする。
             for (int i = 0; i < battleCount; i++)
-            {    
-
-            
+            {
             jankenIsDraw: // じゃんけんが引き分けのときここに戻ってくる。
 
                 int k = 0; // シフト演算の結果をここに代入していく。引き分けの時はここで0に初期化される。
@@ -83,24 +74,24 @@ namespace Janken
                 computerHandArray = cmakeArray.CPhandDetermin(computerHandArray);
                 for (int q = 0; q < computerHandArray.Length; q++)
                 {
-                        k |= shiftNumber << computerHandArray[q];
+                    k |= shiftNumber << computerHandArray[q];
                 }
 
                 // 以下よりじゃんけんの判定を行う。
                 if (k == allHand || k == allScissors || k == allPaper || k == allRock) // 引き分け
                 {
                     Console.WriteLine("DRAW");
+                    Console.WriteLine();
                     goto jankenIsDraw;
                 }
-
 
                 // 勝った場合の以下(1)～(3)処理をグーチョキパーそれぞれの場合にたいして行う。
                 // (1) この試合で勝った手の役名とそれに対応する番号を表示。
                 // (2) 通常プレイヤーについて、勝利したプレイヤーのプレイヤー名を表示し、勝利回数を加算。
                 // (3) コンピュータープレイヤーについて(2)と同様の処理を行う
                 if (k == winScissors) // チョキの勝ち 
-                {   
-                    Console.WriteLine("WIN:{0}({1})",JankenHand.scissors, (int)JankenHand.scissors); // (1)
+                {
+                    Console.WriteLine("WIN:{0}({1})", JankenHand.scissors, (int)JankenHand.scissors); // (1)
                     playerWinRateArray = pmakeArray.Winner(playerHandArray, playerWinRateArray, (int)JankenHand.scissors, player); // (2)
                     computerWinRateArray = cmakeArray.Winner(computerHandArray, computerWinRateArray, (int)JankenHand.scissors, npcPlayer); // (3)
                 }
@@ -108,8 +99,8 @@ namespace Janken
                 if (k == winRock) // グーの勝ち
                 {
                     Console.WriteLine("WIN:{0}({1})", JankenHand.rock, (int)JankenHand.rock);　// (1)
-                    playerWinRateArray = pmakeArray.Winner(playerHandArray, playerWinRateArray, (int)JankenHand.scissors, player); // (2)
-                    computerWinRateArray = cmakeArray.Winner(computerHandArray, computerWinRateArray, (int)JankenHand.scissors, npcPlayer); // (3)
+                    playerWinRateArray = pmakeArray.Winner(playerHandArray, playerWinRateArray, (int)JankenHand.rock, player); // (2)
+                    computerWinRateArray = cmakeArray.Winner(computerHandArray, computerWinRateArray, (int)JankenHand.rock, npcPlayer); // (3)
                 }
 
                 if (k == winPaper) // パーの勝ち
