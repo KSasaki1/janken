@@ -5,27 +5,24 @@ namespace Janken
     /// <summary>
     /// メインメソッドで作成された配列に対応する要素を格納していくメソッドを集めたクラス
     /// </summary>
-    public class MakeJankenArray
+    public class MakeHandArray
     {
         Player phand = new Player();
         NPCPlayer npchand = new NPCPlayer();
-
+        Convert convert = new Convert();
         /// <summary>
         /// プレイヤーの手を配列へ格納していく
         /// </summary>
         /// <param name="phandArray">メインメソッドで作成したじゃんけんの手を格納するための空の配列</param>
         /// <returns>じゃんけんの手が格納され終わった配列</returns>
-        public int[] PhandDetermin(int[] phandArray)
+        public int[] makePlayersArray(int[] phandArray)
         {
+            Console.WriteLine("---------------------------");
             for (int i = 0; i < phandArray.Length; i++)
             {
-                phandArray[i] = phand.JankenHand(); // プレイヤーの手を決定するメソッドを使用。
-            }
+                phandArray[i] = phand.SetJankenHand(); // プレイヤーの手を決定するメソッドを使用。
+                Console.Write("[Player{0}] :{1}, ", i + 1, convert.ToJankenHands(phandArray[i]));
 
-            foreach  (int hand in phandArray)
-            {
-                Console.WriteLine("player hand is" + hand);
-                Console.WriteLine();
             }
             return phandArray;
         }
@@ -35,18 +32,17 @@ namespace Janken
         /// </summary>
         /// <param name="npchandArray">メインメソッドで作成したじゃんけんの手を格納するための空の配列</param>
         /// <returns>じゃんけんの手が格納され終わった配列</returns>
-        public int[] CPhandDetermin(int[] npchandArray)
+        public int[] makeNPCsArray(int[] npchandArray)
         {
             for (int j = 0; j < npchandArray.Length; j++)
             {
-                npchandArray[j] = npchand.NPCJankenHand(); // コンピューターの手を決定するメソッドを使用
-            }
+                npchandArray[j] = npchand.SetNPCJankenHand(); // コンピューターの手を決定するメソッドを使用
+                Console.Write("[NPCPlayer{0}] :{1}, ", j + 1, convert.ToJankenHands(npchandArray[j]));
 
-            foreach  (int hand in npchandArray)
-            {
-                Console.WriteLine("npcplayer hand is" + hand);
-                Console.WriteLine();
             }
+            Console.WriteLine();
+            Console.WriteLine("---------------------------");
+            Console.WriteLine();
             return npchandArray;
         }
     }

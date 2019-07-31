@@ -18,6 +18,7 @@
                 shiftCalc |= shiftNumber << Jankenmain.playerHandArray[p];
             }
         }
+
         /// <summary>
         /// コンピュータの出した手に対してシフト演算を行う。
         /// </summary>

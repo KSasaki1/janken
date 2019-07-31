@@ -13,6 +13,8 @@ namespace Janken
         public const int winScissors = 12;   // チョキとパーのみ出ているとき
         public const int allHand = 14;       // 3つの手が出そろったとき
 
+        int winHand;    // 引き分け:0, グーの勝ち:1, パーの勝ち:2, チョキの勝ち:3
+
         // 以下の2つの変数はプレイヤーに関する表示文章に用いる文字列。
         static string player = "Player";       // 通常プレイヤー用
         static string npcPlayer = "NPCPlayer"; // コンピューター用
@@ -23,40 +25,39 @@ namespace Janken
         public void Judger()
         {
             int shiftCalcedNum = ShiftCalculation.shiftCalc; // シフト演算で出た結果をここに代入。
+            Convert convert = new Convert();
 
             // 以下よりじゃんけんの判定を行う。
-            if (shiftCalcedNum == allHand || shiftCalcedNum == allScissors || shiftCalcedNum == allPaper || shiftCalcedNum == allRock) // 引き分け
+            switch (shiftCalcedNum)
             {
-                Console.WriteLine("DRAW");
+                case allHand:
+                case allRock:
+                case allPaper:
+                case allScissors:
+                    Console.WriteLine("     DRAW");
+                    Console.WriteLine("-----RETRY-----");
+                    winHand = 0;
+                    Jankenmain.draw = true;
+                    break;
+                case winRock:
+                    winHand = (int)JankenHand.rock;
+                    break;
+                case winPaper:
+                    winHand = (int)JankenHand.paper;
+                    break;
+                case winScissors: 
+                    winHand = (int)JankenHand.scissors;
+                    break;
+                default:
+                    break;
+            }
+
+            if (winHand != 0)
+            {
+                Console.WriteLine("WIN:{0}({1})", convert.ToJankenHands(winHand), winHand); // (1)
                 Console.WriteLine();
-                Jankenmain.draw = true;
-            }
-
-            // 勝った場合の以下(1)～(3)処理をグーチョキパーそれぞれの場合にたいして行う。
-            // (1) この試合で勝った手の役名とそれに対応する番号を表示。
-            // (2) 通常プレイヤーについて、勝利したプレイヤーのプレイヤー名を表示し、勝利回数を加算。
-            // (3) コンピュータープレイヤーについて(2)と同様の処理を行う
-            if (shiftCalcedNum == winScissors) // チョキの勝ち 
-            {
-                Console.WriteLine("WIN:{0}({1})", Jankenmain.JankenHand.scissors, (int)Jankenmain.JankenHand.scissors); // (1)
-                Jankenmain.playerWinCountArray = Winner(Jankenmain.playerHandArray, Jankenmain.playerWinCountArray, (int)Jankenmain.JankenHand.scissors, player); // (2)
-                Jankenmain.computerWinCountArray = Winner(Jankenmain.computerHandArray, Jankenmain.computerWinCountArray, (int)Jankenmain.JankenHand.scissors, npcPlayer); // (3)
-                Jankenmain.draw = false;
-            }
-
-            if (shiftCalcedNum == winRock) // グーの勝ち
-            {
-                Console.WriteLine("WIN:{0}({1})", Jankenmain.JankenHand.rock, (int)Jankenmain.JankenHand.rock); // (1)
-                Jankenmain.playerWinCountArray = Winner(Jankenmain.playerHandArray, Jankenmain.playerWinCountArray, (int)Jankenmain.JankenHand.rock, player); // (2)
-                Jankenmain.computerWinCountArray = Winner(Jankenmain.computerHandArray, Jankenmain.computerWinCountArray, (int)Jankenmain.JankenHand.rock, npcPlayer); // (3)
-                Jankenmain.draw = false;
-            }
-
-            if (shiftCalcedNum == winPaper) // パーの勝ち
-            {
-                Console.WriteLine("WIN:{0}({1})", Jankenmain.JankenHand.paper, (int)Jankenmain.JankenHand.paper); // (1)
-                Jankenmain.playerWinCountArray = Winner(Jankenmain.playerHandArray, Jankenmain.playerWinCountArray, (int)Jankenmain.JankenHand.paper, player); // (2)
-                Jankenmain.computerWinCountArray = Winner(Jankenmain.computerHandArray, Jankenmain.computerWinCountArray, (int)Jankenmain.JankenHand.paper, npcPlayer); // (3)
+                Jankenmain.playerWinCountArray = Winner(Jankenmain.playerHandArray, Jankenmain.playerWinCountArray, winHand, player); // (2)
+                Jankenmain.computerWinCountArray = Winner(Jankenmain.computerHandArray, Jankenmain.computerWinCountArray, winHand, npcPlayer); // (3)
                 Jankenmain.draw = false;
             }
         }
@@ -84,8 +85,6 @@ namespace Janken
                     Console.WriteLine(player + (i + 1));
                 }
             }
-            Console.WriteLine("--------------------");
-            Console.WriteLine();
             return pWinRateArray;
         }
     }

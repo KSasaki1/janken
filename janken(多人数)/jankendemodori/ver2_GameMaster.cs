@@ -8,11 +8,12 @@ namespace Janken
     public class GameMaster
     {
         static public int playerCount, npcCount, gameCount; // プレイヤーとコンピュータの数、プレイ回数。
+
         public void Master()
         {
             // じゃんけんを何ゲームするか決定。
-            Console.Write("何回勝負?");
-            gameCount = int.Parse(Console.ReadLine());
+                Console.Write("何回勝負?");
+                gameCount = int.Parse(Console.ReadLine());
 
             // 通常プレイヤーの数を決定。
             // これに伴いプレイヤー数に対応したじゃんけんの手を格納する配列、プレイヤーごとの勝利回数を格納する配列を作成。

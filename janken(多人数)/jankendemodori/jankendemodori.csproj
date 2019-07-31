@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ver2_JankenHand.cs" />
     <Compile Include="ver2_Result.cs" />
     <Compile Include="ver2_ShiftCalculation.cs" />
     <Compile Include="ver2_GameMaster.cs" />
