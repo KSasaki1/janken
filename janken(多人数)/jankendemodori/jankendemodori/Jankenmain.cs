@@ -7,36 +7,6 @@
     /// </summary>
     public static class Jankenmain
     {
-        private static bool draw = false; // 引き分け (true) のときじゃんけんの手の選択から仕切りなおす
-
-        private static int[] playerWinCountArray;    // プレイヤーの勝利回数を格納する配列。
-        private static int[] computerHandArray;      // コンピューターの出した手を格納する配列。
-        private static int[] computerWinCountArray;  // コンピューターの勝利回数を格納する配列。
-
-        public static bool Draw
-        {
-            get => draw;
-            set => draw = value;
-        }
-
-        public static int[] PlayerWinCountArray
-        {
-            get => playerWinCountArray;
-            set => playerWinCountArray = value;
-        }
-
-        public static int[] ComputerHandArray
-        {
-            get => computerHandArray;
-            set => computerHandArray = value;
-        }
-
-        public static int[] ComputerWinCountArray
-        {
-            get => computerWinCountArray;
-            set => computerWinCountArray = value;
-        }
-
         /// <summary>
         /// じゃんけんのメイン処理
         /// </summary>
@@ -44,11 +14,11 @@
         {
             GameMaster gameMaster = new GameMaster();
             ShiftCalculation shiftCalculation = new ShiftCalculation();
-            Judge judge = new Judge();
 
             gameMaster.Master(); // プレイ回数、人数決定
 
             MakeHandArray makeHandArray = new MakeHandArray();
+            Judge judge = new Judge();
 
             // 以下よりプレイヤーの指定した数だけじゃんけんをする。
             for (int i = 0; i < GameMaster.GameCount; i++)
@@ -63,12 +33,12 @@
                     shiftCalculation.PlayerShiftCalc();
 
                     // コンピューターについて上部でプレイヤーに対して行ったものと同じ処理を行う。
-                    ComputerHandArray = makeHandArray.MakeNPCsArray(ComputerHandArray);
+                    makeHandArray.MakeNPCsArray();
                     shiftCalculation.CPShiftCalc();
 
                     judge.Judger(); // 勝敗引き分けの判定。
                 }
-                while (Draw);
+                while (Judge.Draw);
             }
 
             Result result = new Result();

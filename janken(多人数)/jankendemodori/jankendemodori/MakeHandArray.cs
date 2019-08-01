@@ -8,6 +8,7 @@
     public class MakeHandArray
     {
         private static int[] playerHandArray = new int[GameMaster.PlayerCount];        // プレイヤーの出した手を格納する配列。
+        private static int[] computerHandArray = new int[GameMaster.NpcCount];      // コンピューターの出した手を格納する配列。
         private Player phand = new Player();
         private NPCPlayer npchand = new NPCPlayer();
         private Convert convert = new Convert();
@@ -16,6 +17,12 @@
         {
             get => playerHandArray;
             private set => playerHandArray = value;
+        }
+
+        public static int[] ComputerHandArray
+        {
+            get => computerHandArray;
+            private set => computerHandArray = value;
         }
 
         /// <summary>
@@ -36,19 +43,17 @@
         /// コンピューターの手を配列へ格納していく
         /// </summary>
         /// <param name="npchandArray">メインメソッドで作成したじゃんけんの手を格納するための空の配列</param>
-        /// <returns>じゃんけんの手が格納され終わった配列</returns>
-        public int[] MakeNPCsArray(int[] npchandArray)
+        public void MakeNPCsArray()
         {
-            for (int j = 0; j < npchandArray.Length; j++)
+            for (int j = 0; j < computerHandArray.Length; j++)
             {
-                npchandArray[j] = this.npchand.SetNPCJankenHand(); // コンピューターの手を決定するメソッドを使用
-                Console.Write("[NPCPlayer{0}] :{1}, ", j + 1, this.convert.ToJankenHands(npchandArray[j]));
+                computerHandArray[j] = this.npchand.SetNPCJankenHand(); // コンピューターの手を決定するメソッドを使用
+                Console.Write("[NPCPlayer{0}] :{1}, ", j + 1, this.convert.ToJankenHands(computerHandArray[j]));
             }
 
             Console.WriteLine();
             Console.WriteLine("---------------------------");
             Console.WriteLine();
-            return npchandArray;
         }
     }
 }

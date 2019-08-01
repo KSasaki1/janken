@@ -42,7 +42,6 @@
             // これに伴いプレイヤー数に対応したじゃんけんの手を格納する配列、プレイヤーごとの勝利回数を格納する配列を作成。
             Console.Write("プレイヤーは何人?");
             PlayerCount = int.Parse(Console.ReadLine());
-            Jankenmain.PlayerWinCountArray = new int[PlayerCount];
 
             // コンピュータープレイヤーに関して、上部でプレイヤーに関して行ったものと同じ処理を行う。
             do
@@ -51,9 +50,6 @@
                 NpcCount = int.Parse(Console.ReadLine());
             }
             while ((PlayerCount + NpcCount) < 2 && GameCount > 0);
-
-            Jankenmain.ComputerHandArray = new int[NpcCount];
-            Jankenmain.ComputerWinCountArray = new int[NpcCount];
         }
     }
 }

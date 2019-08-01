@@ -30,9 +30,9 @@
         /// </summary>
         public void CPShiftCalc()
         {
-            for (int q = 0; q < Jankenmain.ComputerHandArray.Length; q++)
+            for (int q = 0; q < MakeHandArray.ComputerHandArray.Length; q++)
             {
-                ShiftCalc |= ShiftNumber << Jankenmain.ComputerHandArray[q];
+                ShiftCalc |= ShiftNumber << MakeHandArray.ComputerHandArray[q];
             }
         }
     }
