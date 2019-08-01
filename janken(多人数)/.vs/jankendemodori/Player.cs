@@ -26,7 +26,6 @@ namespace Janken
             while (int.Parse(pHand) < (int)JankenHand.Rock || int.Parse(pHand) > (int)JankenHand.Scissors);
 
             Console.WriteLine();
-            Console.WriteLine("↓↓↓↓↓↓ALL HANDS↓↓↓↓↓↓");
             return int.Parse(pHand);
         }
     }
