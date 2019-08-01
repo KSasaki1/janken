@@ -8,19 +8,42 @@
     public class Judge
     {
         // 以下の7つの変数は論理和を用いたシフト演算の計算結果。
-        public const int AllRock = 2;        // 全てグーのとき
-        public const int AllPaper = 4;       // 全てチョキのとき
-        public const int WinPaper = 6;       // パーとグーのみ出ているとき
-        public const int AllScissors = 8;    // 全てパーのとき
-        public const int WinRock = 10;       // グーとチョキのみ出ているとき
-        public const int WinScissors = 12;   // チョキとパーのみ出ているとき
-        public const int AllHand = 14;       // 3つの手が出そろったとき
+        private const int AllRock = 2;        // 全てグーのとき
+        private const int AllPaper = 4;       // 全てチョキのとき
+        private const int WinPaper = 6;       // パーとグーのみ出ているとき
+        private const int AllScissors = 8;    // 全てパーのとき
+        private const int WinRock = 10;       // グーとチョキのみ出ているとき
+        private const int WinScissors = 12;   // チョキとパーのみ出ているとき
+        private const int AllHand = 14;       // 3つの手が出そろったとき
+
+        private static bool draw = false; // 引き分け (true) のときじゃんけんの手の選択から仕切りなおす
+
+        private static int[] playerWinCountArray = new int[GameMaster.PlayerCount];    // プレイヤーの勝利回数を格納する配列。
+        private static int[] computerWinCountArray = new int[GameMaster.NpcCount];  // コンピューターの勝利回数を格納する配列。
 
         // 以下の2つの変数はプレイヤーに関する表示文章に用いる文字列。
         private string player = "Player";       // 通常プレイヤー用
         private string npcPlayer = "NPCPlayer"; // コンピューター用
 
         private int winHand;    // 引き分け:0, グーの勝ち:1, パーの勝ち:2, チョキの勝ち:3
+
+        public static int[] PlayerWinCountArray
+        {
+            get => playerWinCountArray;
+            private set => playerWinCountArray = value;
+        }
+
+        public static int[] ComputerWinCountArray
+        {
+            get => computerWinCountArray;
+            private set => computerWinCountArray = value;
+        }
+
+        public static bool Draw
+        {
+            get => draw;
+            private set => draw = value;
+        }
 
         /// <summary>
         /// シフト演算で出た結果をもとに全プレイヤーの勝敗引き分けを判断
@@ -40,7 +63,7 @@
                     Console.WriteLine("     DRAW");
                     Console.WriteLine("-----RETRY-----");
                     this.winHand = 0;
-                    Jankenmain.Draw = true;
+                    Draw = true;
                     break;
                 case WinRock:
                     this.winHand = (int)JankenHand.Rock;
@@ -59,9 +82,9 @@
             {
                 Console.WriteLine("WIN:{0}({1})", convert.ToJankenHands(this.winHand), this.winHand);
                 Console.WriteLine();
-                Jankenmain.PlayerWinCountArray = this.Winner(Jankenmain.PlayerHandArray, Jankenmain.PlayerWinCountArray, this.winHand, this.player);
-                Jankenmain.ComputerWinCountArray = this.Winner(Jankenmain.ComputerHandArray, Jankenmain.ComputerWinCountArray, this.winHand, this.npcPlayer);
-                Jankenmain.Draw = false;
+                PlayerWinCountArray = this.Winner(MakeHandArray.PlayerHandArray, PlayerWinCountArray, this.winHand, this.player);
+                ComputerWinCountArray = this.Winner(MakeHandArray.ComputerHandArray, ComputerWinCountArray, this.winHand, this.npcPlayer);
+                Draw = false;
             }
         }
 

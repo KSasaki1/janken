@@ -19,9 +19,9 @@
         /// </summary>
         public void PlayerShiftCalc()
         {
-            for (int p = 0; p < Jankenmain.PlayerHandArray.Length; p++)
+            for (int p = 0; p < MakeHandArray.PlayerHandArray.Length; p++)
             {
-                ShiftCalc |= ShiftNumber << Jankenmain.PlayerHandArray[p];
+                ShiftCalc |= ShiftNumber << MakeHandArray.PlayerHandArray[p];
             }
         }
 
@@ -30,9 +30,9 @@
         /// </summary>
         public void CPShiftCalc()
         {
-            for (int q = 0; q < Jankenmain.ComputerHandArray.Length; q++)
+            for (int q = 0; q < MakeHandArray.ComputerHandArray.Length; q++)
             {
-                ShiftCalc |= ShiftNumber << Jankenmain.ComputerHandArray[q];
+                ShiftCalc |= ShiftNumber << MakeHandArray.ComputerHandArray[q];
             }
         }
     }
