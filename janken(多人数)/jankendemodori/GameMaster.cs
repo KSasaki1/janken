@@ -63,13 +63,13 @@
             while (true)
             {
                 input = Console.ReadLine();
-                if (uint.TryParse(input, out uint i))
+                if (int.TryParse(input, out int i) && i >= 0)
                 {
-                        return (int)i;
+                        return i;
                 }
                 else
                 {
-                    Console.Write("正の整数を入力してください(int32)>>");
+                    Console.Write("正の整数を入力してください>>");
                 }
             }
         }
