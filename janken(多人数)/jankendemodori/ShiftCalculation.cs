@@ -15,24 +15,14 @@
         }
 
         /// <summary>
-        /// プレイヤー出した手に対してシフト演算を行う。
+        /// プレイヤーの出した手を用いてシフト演算を行う
         /// </summary>
-        public void PlayerShiftCalc()
+        /// <param name="playersHandArray">プレイヤー、コンピュータの手が格納された配列</param>
+        public void PlayersShiftCalc(int[] playersHandArray)
         {
-            for (int p = 0; p < MakeHandArray.PlayerHandArray.Length; p++)
+            for (int i = 0; i < playersHandArray.Length; i++)
             {
-                ShiftCalc |= ShiftNumber << MakeHandArray.PlayerHandArray[p];
-            }
-        }
-
-        /// <summary>
-        /// コンピュータの出した手に対してシフト演算を行う。
-        /// </summary>
-        public void CPShiftCalc()
-        {
-            for (int q = 0; q < MakeHandArray.ComputerHandArray.Length; q++)
-            {
-                ShiftCalc |= ShiftNumber << MakeHandArray.ComputerHandArray[q];
+                ShiftCalc |= ShiftNumber << playersHandArray[i];
             }
         }
     }

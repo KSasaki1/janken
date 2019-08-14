@@ -58,7 +58,7 @@
         /// <returns>int型の数値</returns>
         public static int CorrectNumber()
         {
-            string input;           // 数値入力
+            string input;           // ここに入力された数値が適切なものかどうかを判断
 
             while (true)
             {
