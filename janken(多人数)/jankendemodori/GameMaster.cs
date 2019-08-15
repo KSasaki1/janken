@@ -35,21 +35,24 @@
         public static void Master()
         {
             // じゃんけんを何ゲームするか決定。
-            Console.Write("何回勝負?>>");
-            GameCount = CorrectNumber();
-
-            // 通常プレイヤーの数を決定。
-            // これに伴いプレイヤー数に対応したじゃんけんの手を格納する配列、プレイヤーごとの勝利回数を格納する配列を作成。
-            Console.Write("プレイヤーは何人?>>");
-            PlayerCount = CorrectNumber();
-
-            // コンピュータープレイヤーに関して、上部でプレイヤーに関して行ったものと同じ処理を行う。
             do
             {
-                Console.Write("コンピューターは何人?>>");
+                Console.Write("何回勝負?(1回以上)>>");
+                GameCount = CorrectNumber();
+            }
+            while (gameCount == 0);
+
+            // 通常プレイヤーの数を決定。
+            Console.Write("プレイヤーは何人?(0人でも可)>>");
+            PlayerCount = CorrectNumber();
+
+            // コンピュータープレイヤーの数を決定。
+            do
+            {
+                Console.Write("コンピューターは何人?(プレイヤーと合わせて2人以上になるように)>>");
                 NpcCount = CorrectNumber();
             }
-            while ((PlayerCount + NpcCount) < 2 && GameCount > 0);
+            while ((PlayerCount + NpcCount) < 2);
         }
 
         /// <summary>
@@ -69,7 +72,7 @@
                 }
                 else
                 {
-                    Console.Write("正の整数を入力してください>>");
+                    Console.Write("適切な数値を入力してください>>");
                 }
             }
         }

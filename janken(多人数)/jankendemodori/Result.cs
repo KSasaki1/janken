@@ -49,7 +49,7 @@
         {
             string wannaExport;
             Console.WriteLine();
-            Console.Write("Export result file?(YES:y, NO:n)>>");
+            Console.Write("Export result ?(YES:y, NO:n)>>");
             wannaExport = Console.ReadLine();
 
             if (wannaExport.ToLower() == "y")
