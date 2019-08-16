@@ -1,0 +1,14 @@
+C:\Users\kaito.sasaki\source\repos\jankendemodori\jankendemodori\bin\Debug\jankendemodori.exe.config
+C:\Users\kaito.sasaki\source\repos\jankendemodori\jankendemodori\bin\Debug\jankendemodori.exe
+C:\Users\kaito.sasaki\source\repos\jankendemodori\jankendemodori\bin\Debug\jankendemodori.pdb
+C:\Users\kaito.sasaki\source\repos\jankendemodori\jankendemodori\obj\Debug\jankendemodori.csprojAssemblyReference.cache
+C:\Users\kaito.sasaki\source\repos\jankendemodori\jankendemodori\obj\Debug\jankendemodori.csproj.CoreCompileInputs.cache
+C:\Users\kaito.sasaki\source\repos\jankendemodori\jankendemodori\obj\Debug\jankendemodori.exe
+C:\Users\kaito.sasaki\source\repos\jankendemodori\jankendemodori\obj\Debug\jankendemodori.pdb
+C:\Users\kaito.sasaki\source\repos\janken(多人数)\jankendemodori\bin\Debug\jankendemodori.exe.config
+C:\Users\kaito.sasaki\source\repos\janken(多人数)\jankendemodori\bin\Debug\jankendemodori.exe
+C:\Users\kaito.sasaki\source\repos\janken(多人数)\jankendemodori\bin\Debug\jankendemodori.pdb
+C:\Users\kaito.sasaki\source\repos\janken(多人数)\jankendemodori\obj\Debug\jankendemodori.csprojAssemblyReference.cache
+C:\Users\kaito.sasaki\source\repos\janken(多人数)\jankendemodori\obj\Debug\jankendemodori.csproj.CoreCompileInputs.cache
+C:\Users\kaito.sasaki\source\repos\janken(多人数)\jankendemodori\obj\Debug\jankendemodori.exe
+C:\Users\kaito.sasaki\source\repos\janken(多人数)\jankendemodori\obj\Debug\jankendemodori.pdb
