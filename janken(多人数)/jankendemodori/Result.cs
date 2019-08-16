@@ -78,14 +78,14 @@
 
             if (wannaExport.ToLower() == "y")
             {
-                StreamWriter standerd = new StreamWriter(Console.OpenStandardOutput());
+                StreamWriter standard = new StreamWriter(Console.OpenStandardOutput());
                 using (StreamWriter newwriter = new StreamWriter("Result.txt", false, Encoding.UTF8))
                 {
-                    Console.SetOut(newwriter);
+                    Console.SetOut(newwriter);      // Console.WriteLineでファイルへ書き込めるようにする
                     Console.WriteLine("[RESULT]");
                     this.ShowPlayersResult(Player, Judge.PlayerWinCountArray);
                     this.ShowPlayersResult(NPCPlayer, Judge.ComputerWinCountArray);
-                    Console.SetOut(standerd);
+                    Console.SetOut(standard);       // Console.WriteLineで書き込み可能な状態から戻す。
                 }
 
                 Console.WriteLine();

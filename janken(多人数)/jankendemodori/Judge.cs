@@ -22,8 +22,8 @@
         private static int[] computerWinCountArray = new int[GameMaster.NpcCount];  // コンピューターの勝利回数を格納する配列。
 
         // 以下の2つの変数はプレイヤーに関する表示文章に用いる文字列。
-        private string player = "Player";       // 通常プレイヤー用
-        private string npcPlayer = "NPCPlayer"; // コンピューター用
+        private string nameOfPlayer = "Player";       // 通常プレイヤー用
+        private string nameOfNPCPlayer = "NPCPlayer"; // コンピューター用
 
         private int winHand;    // 引き分け:0, グーの勝ち:1, パーの勝ち:2, チョキの勝ち:3
 
@@ -82,8 +82,8 @@
             {
                 Console.WriteLine("WIN:{0}({1})", convert.ToJankenHands(this.winHand), this.winHand);
                 Console.WriteLine();
-                PlayerWinCountArray = this.Winner(MakeHandArray.PlayerHandArray, PlayerWinCountArray, this.winHand, this.player);
-                ComputerWinCountArray = this.Winner(MakeHandArray.ComputerHandArray, ComputerWinCountArray, this.winHand, this.npcPlayer);
+                PlayerWinCountArray = this.Winner(MakeHandArray.PlayerHandArray, PlayerWinCountArray, this.winHand, this.nameOfPlayer);
+                ComputerWinCountArray = this.Winner(MakeHandArray.ComputerHandArray, ComputerWinCountArray, this.winHand, this.nameOfNPCPlayer);
                 Draw = false;
             }
         }

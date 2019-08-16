@@ -31,7 +31,7 @@
   <Class Name="Janken.MakeHandArray">
     <Position X="6.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAgCAAEAACBAAACAAAAQAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAgKAAAAAABAAACAAAAQAAAAAAAAAACAg=</HashCode>
       <FileName>MakeHandArray.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -50,16 +50,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Janken.Result">
-    <Position X="10" Y="2" Width="1.5" />
+    <Position X="4" Y="5.5" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAQAgAAAAAACCAAAAAABAEgAAABAAAA=</HashCode>
+      <HashCode>AAAEAEAAAAAAAAQAgAABAAACCAAAAAAAAAgCAQAAAAA=</HashCode>
       <FileName>Result.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Janken.ShiftCalculation">
     <Position X="8.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAQAAAAAAAAAAAAAAFAAAABAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAABAAAAAQAAAAAAAAAAAAAAEAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>ShiftCalculation.cs</FileName>
     </TypeIdentifier>
   </Class>
