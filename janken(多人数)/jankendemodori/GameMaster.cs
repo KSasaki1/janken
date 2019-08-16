@@ -46,10 +46,10 @@
             Console.Write("プレイヤーは何人?(0人でも可)>>");
             PlayerCount = CorrectNumber();
 
-            // コンピュータープレイヤーの数を決定。
+            // コンピュータプレイヤーの数を決定。
             do
             {
-                Console.Write("コンピューターは何人?(プレイヤーと合わせて2人以上になるように)>>");
+                Console.Write("コンピュータは何人?(プレイヤーと合わせて2人以上になるように)>>");
                 NpcCount = CorrectNumber();
             }
             while ((PlayerCount + NpcCount) < 2);

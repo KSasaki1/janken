@@ -23,16 +23,16 @@
         /// </summary>
         /// <param name="userkind">プレイヤーの種類(プレイヤー、コンピュータ)</param>
         /// <returns>勝利数、敗北数、勝率の配列</returns>
-        public Tuple<int[], int[], float[]> GetResultArrays(string userkind)
+        public (int[] winCArr, int[] loseCArr, float[] winRArr) GetResultArrays(string userkind)
         {
             switch (userkind)
             {
                 case Player:
-                    return Tuple.Create(Judge.PlayerWinCountArray, this.playerLoseCountArray, this.playerWinRateArray);
+                    return (Judge.PlayerWinCountArray, this.playerLoseCountArray, this.playerWinRateArray);
                 case NPCPlayer:
-                    return Tuple.Create(Judge.ComputerWinCountArray, this.computerLoseCountArray, this.computerWinRateArray);
+                    return (Judge.ComputerWinCountArray, this.computerLoseCountArray, this.computerWinRateArray);
                 default:
-                    return Tuple.Create(new int[0], new int[0], new float[0]);
+                    return (new int[0], new int[0], new float[0]);
             }
         }
 
@@ -43,14 +43,11 @@
         public void StorePlayersResult(string userkind)
         {
             var arrays = this.GetResultArrays(userkind);
-            int[] winCArr = arrays.Item1;
-            int[] loseCArr = arrays.Item2;
-            float[] winRArr = arrays.Item3;
 
-            for (int i = 0; i < winCArr.Length; i++)
+            for (int i = 0; i < arrays.winCArr.Length; i++)
             {
-                loseCArr[i] = GameMaster.GameCount - winCArr[i]; // 敗北数計算
-                winRArr[i] = (float)winCArr[i] / (float)GameMaster.GameCount; // 勝率計算
+                arrays.loseCArr[i] = GameMaster.GameCount - arrays.winCArr[i]; // 敗北数計算
+                arrays.winRArr[i] = (float)arrays.winCArr[i] / (float)GameMaster.GameCount; // 勝率計算
             }
         }
 
@@ -62,13 +59,10 @@
         public void ShowPlayersResult(string userkind, int[] playersArray)
         {
             var arrays = this.GetResultArrays(userkind);
-            int[] winCArr = arrays.Item1;
-            int[] loseCArr = arrays.Item2;
-            float[] winRArr = arrays.Item3;
 
             for (int i = 0; i < playersArray.Length; i++)
             {
-                Console.WriteLine($"{userkind}{i + 1:00} >> WIN[{winCArr[i]}], LOSE[{loseCArr[i]}], WINRATE[{winRArr[i]:P}]");
+                Console.WriteLine($"{userkind}{i + 1:00} >> WIN[{arrays.winCArr[i]}], LOSE[{arrays.loseCArr[i]}], WINRATE[{arrays.winRArr[i]:P}]");
             }
         }
 

@@ -12,14 +12,13 @@
         /// </summary>
         public static void Main()
         {
-            int jankenCount = 0; // 引き分けも含めてじゃんけんの回数を記録する変数を初期化
+            int jankenCount = 0; // 引き分けも含めてじゃんけんの回数を記録する変数。ここで初期化。
             ShiftCalculation shiftCalculation = new ShiftCalculation();
 
             GameMaster.Master(); // プレイ回数、人数決定
 
             MakeHandArray makeHandArray = new MakeHandArray();
             Judge judge = new Judge();
-            Player phand = new Player();
 
             // 以下よりプレイヤーの指定した数だけじゃんけんをする。
             for (int i = 0; i < GameMaster.GameCount; i++)
@@ -37,7 +36,7 @@
                     makeHandArray.TestMakePlayersArray(Result.Player, MakeHandArray.PlayerHandArray);
                     shiftCalculation.PlayersShiftCalc(MakeHandArray.PlayerHandArray);
 
-                    // コンピューターについて上部でプレイヤーに対して行ったものと同じ処理を行う。
+                    // コンピュータについて上部でプレイヤーに対して行ったものと同じ処理を行う。
                     makeHandArray.TestMakePlayersArray(Result.NPCPlayer, MakeHandArray.ComputerHandArray);
                     shiftCalculation.PlayersShiftCalc(MakeHandArray.ComputerHandArray);
 

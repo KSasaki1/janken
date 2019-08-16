@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// メインメソッドで作成された配列に対応する要素を格納していくメソッドを集めたクラス
+    /// 作成された配列に対応する要素を格納していくメソッドを集めたクラス
     /// </summary>
     public class MakeHandArray
     {
@@ -34,7 +34,7 @@
         {
             for (int i = 0; i < pHandArr.Length; i++)
             {
-                pHandArr[i] = this.ReturnJankenHandFunc(playerkind); // プレイヤーの手を決定するメソッドを使用。
+                pHandArr[i] = this.ReturnJankenHandFunc(playerkind);
                 Console.Write("[{0}{1}] :{2}, ", playerkind, i + 1, this.convert.ToJankenHands(pHandArr[i]));
             }
         }
