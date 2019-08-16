@@ -1,6 +1,7 @@
 ﻿namespace Janken
 {
     using System;
+    using System.Diagnostics.Eventing.Reader;
     using System.IO;
     using System.Runtime.CompilerServices;
     using System.Text;
@@ -39,7 +40,7 @@
         /// 配列に各プレイヤーの結果を格納する。
         /// </summary>
         /// <param name="userkind">プレイヤーの種類(プレイヤー、コンピュータ)</param>
-        public void TestStorePlayersResult(string userkind)
+        public void StorePlayersResult(string userkind)
         {
             var arrays = this.GetResultArrays(userkind);
             int[] winCArr = arrays.Item1;
@@ -54,32 +55,21 @@
         }
 
         /// <summary>
-        /// 各プレイヤーの戦績を表示する。
+        /// 成績の表示、ファイル出力のもととなる処理
         /// </summary>
         /// <param name="userkind">プレイヤーの種類(プレイヤー、コンピュータ)</param>
-        /// <param name="playersArray">プレイヤーのじゃんけん結果が格納された配列</param>
-        public void TestShowPlayersResult(string userkind, int[] playersArray)
-        {
-            for (int i = 0; i < playersArray.Length; i++)
-            {
-                Console.WriteLine(this.ReturnResultString(userkind, i));
-            }
-        }
-
-        /// <summary>
-        /// プレイヤーのじゃんけん結果の文字列を返す。
-        /// </summary>
-        /// <param name="userkind">プレイヤーの種類(プレイヤー、コンピュータ)</param>
-        /// <param name="roopCounter">for文のループカウンタ</param>
-        /// <returns>プレイヤーの勝利、敗北数と勝率を表示するための文字列</returns>
-        public string ReturnResultString(string userkind, int roopCounter)
+        /// <param name="playersArray">プレイヤーの数だけ要素を格納する配列</param>
+        public void ShowPlayersResult(string userkind, int[] playersArray)
         {
             var arrays = this.GetResultArrays(userkind);
             int[] winCArr = arrays.Item1;
             int[] loseCArr = arrays.Item2;
             float[] winRArr = arrays.Item3;
 
-            return $"{userkind}{roopCounter + 1:00} >> WIN[{winCArr[roopCounter]}], LOSE[{loseCArr[roopCounter]}], WINRATE[{winRArr[roopCounter]:P}]";
+            for (int i = 0; i < playersArray.Length; i++)
+            {
+                Console.WriteLine($"{userkind}{i + 1:00} >> WIN[{winCArr[i]}], LOSE[{loseCArr[i]}], WINRATE[{winRArr[i]:P}]");
+            }
         }
 
         /// <summary>
@@ -94,21 +84,14 @@
 
             if (wannaExport.ToLower() == "y")
             {
+                StreamWriter standerd = new StreamWriter(Console.OpenStandardOutput());
                 using (StreamWriter newwriter = new StreamWriter("Result.txt", false, Encoding.UTF8))
                 {
-                    newwriter.WriteLine("[RESULT]");
-                    for (int i = 0; i < Judge.PlayerWinCountArray.Length; i++)
-                    {
-                        newwriter.WriteLine(this.ReturnResultString(Player, i));
-                    }
-                }
-
-                using (StreamWriter addwriter = new StreamWriter("Result.txt", true, Encoding.UTF8))
-                {
-                    for (int i = 0; i < Judge.ComputerWinCountArray.Length; i++)
-                    {
-                        addwriter.WriteLine(this.ReturnResultString(NPCPlayer, i));
-                    }
+                    Console.SetOut(newwriter);
+                    Console.WriteLine("[RESULT]");
+                    this.ShowPlayersResult(Player, Judge.PlayerWinCountArray);
+                    this.ShowPlayersResult(NPCPlayer, Judge.ComputerWinCountArray);
+                    Console.SetOut(standerd);
                 }
 
                 Console.WriteLine();

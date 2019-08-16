@@ -49,12 +49,12 @@
             Console.WriteLine("JankenCount = {0}", jankenCount); // 引き分けを含む総対戦数を表示
 
             // プレイヤーとコンピュータの敗北数、勝率を配列へ格納する
-            result.TestStorePlayersResult(Result.Player);
-            result.TestStorePlayersResult(Result.NPCPlayer);
+            result.StorePlayersResult(Result.Player);
+            result.StorePlayersResult(Result.NPCPlayer);
 
             // 各プレイヤーの成績を表示
-            result.TestShowPlayersResult(Result.Player, Judge.PlayerWinCountArray);
-            result.TestShowPlayersResult(Result.NPCPlayer, Judge.ComputerWinCountArray);
+            result.ShowPlayersResult(Result.Player, Judge.PlayerWinCountArray);
+            result.ShowPlayersResult(Result.NPCPlayer, Judge.ComputerWinCountArray);
 
             // 成績のファイル出力
             result.ExportResult();
