@@ -28,32 +28,33 @@
         /// <summary>
         /// プレイヤーの手を配列へ格納していく
         /// </summary>
-        /// <param name="phandArray">メインメソッドで作成したじゃんけんの手を格納するための空の配列</param>
-        public void MakePlayersArray()
+        /// <param name="playerkind">プレイヤーの種類(プレイヤー、コンピュータ)</param>
+        /// <param name="pHandArr">プレイヤーの手を格納する配列</param>
+        public void TestMakePlayersArray(string playerkind, int[] pHandArr)
         {
-            Console.WriteLine("---------------------------");
-            for (int i = 0; i < playerHandArray.Length; i++)
+            for (int i = 0; i < pHandArr.Length; i++)
             {
-                playerHandArray[i] = this.phand.SetJankenHand(); // プレイヤーの手を決定するメソッドを使用。
-                Console.Write("[Player{0}] :{1}, ", i + 1, this.convert.ToJankenHands(playerHandArray[i]));
+                pHandArr[i] = this.ReturnJankenHandFunc(playerkind); // プレイヤーの手を決定するメソッドを使用。
+                Console.Write("[{0}{1}] :{2}, ", playerkind, i + 1, this.convert.ToJankenHands(pHandArr[i]));
             }
         }
 
         /// <summary>
-        /// コンピューターの手を配列へ格納していく
+        /// プレイヤーに対応したじゃんけんの手を決定するメソッドを返す
         /// </summary>
-        /// <param name="npchandArray">メインメソッドで作成したじゃんけんの手を格納するための空の配列</param>
-        public void MakeNPCsArray()
+        /// <param name="playerKind">>プレイヤーの種類(プレイヤー、コンピュータ)</param>
+        /// <returns>プレイヤーに対応したじゃんけんの手を決定するメソッド</returns>
+        public int ReturnJankenHandFunc(string playerKind)
         {
-            for (int j = 0; j < computerHandArray.Length; j++)
+            switch (playerKind)
             {
-                computerHandArray[j] = this.npchand.SetNPCJankenHand(); // コンピューターの手を決定するメソッドを使用
-                Console.Write("[NPCPlayer{0}] :{1}, ", j + 1, this.convert.ToJankenHands(computerHandArray[j]));
+                case Result.Player:
+                    return this.phand.SetJankenHand();
+                case Result.NPCPlayer:
+                    return this.npchand.SetNPCJankenHand();
+                default:
+                    return 0;
             }
-
-            Console.WriteLine();
-            Console.WriteLine("---------------------------");
-            Console.WriteLine();
         }
     }
 }

@@ -29,13 +29,21 @@
                 {
                     ShiftCalculation.ShiftCalc = 0; // 引き分けの時はここでシフト演算の結果が0に初期化される。
 
+                    Console.WriteLine();
+                    Console.WriteLine("---------------------------");
+                    Console.WriteLine();
+
                     // プレイヤーのじゃんけんの手を配列に格納し、中身についてシフト演算していく
-                    makeHandArray.MakePlayersArray();
+                    makeHandArray.TestMakePlayersArray(Result.Player, MakeHandArray.PlayerHandArray);
                     shiftCalculation.PlayersShiftCalc(MakeHandArray.PlayerHandArray);
 
                     // コンピューターについて上部でプレイヤーに対して行ったものと同じ処理を行う。
-                    makeHandArray.MakeNPCsArray();
+                    makeHandArray.TestMakePlayersArray(Result.NPCPlayer, MakeHandArray.ComputerHandArray);
                     shiftCalculation.PlayersShiftCalc(MakeHandArray.ComputerHandArray);
+
+                    Console.WriteLine();
+                    Console.WriteLine("---------------------------");
+                    Console.WriteLine();
 
                     judge.Judger(); // 勝敗引き分けの判定。
                     jankenCount += 1;
