@@ -32,25 +32,25 @@
         /// <summary>
         /// ゲーム準備のための入力
         /// </summary>
-        public static void Master()
+        public static void SetNumbersRelateToPlay()
         {
             // じゃんけんを何ゲームするか決定。
             do
             {
                 Console.Write("何回勝負?(1回以上)>>");
-                GameCount = CorrectNumber();
+                GameCount = TryInputValidNumber();
             }
             while (gameCount == 0);
 
             // 通常プレイヤーの数を決定。
             Console.Write("プレイヤーは何人?(0人でも可)>>");
-            PlayerCount = CorrectNumber();
+            PlayerCount = TryInputValidNumber();
 
             // コンピュータプレイヤーの数を決定。
             do
             {
                 Console.Write("コンピュータは何人?(プレイヤーと合わせて2人以上になるように)>>");
-                NpcCount = CorrectNumber();
+                NpcCount = TryInputValidNumber();
             }
             while ((PlayerCount + NpcCount) < 2);
         }
@@ -59,7 +59,7 @@
         /// 数値が入力されるまでリトライ
         /// </summary>
         /// <returns>int型の数値</returns>
-        public static int CorrectNumber()
+        public static int TryInputValidNumber()
         {
             string input;           // ここに入力された数値が適切なものかどうかを判断
 

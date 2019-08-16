@@ -50,7 +50,7 @@
         /// </summary>
         public void Judger()
         {
-            int shiftCalcedNum = ShiftCalculation.ShiftCalc; // シフト演算で出た結果をここに代入。
+            int shiftCalcedNum = ShiftCalculation.AssignShiftCalcResult; // シフト演算で出た結果をここに代入。
             Convert convert = new Convert();
 
             // 以下よりじゃんけんの判定を行う。

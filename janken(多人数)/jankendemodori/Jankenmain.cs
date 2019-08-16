@@ -15,7 +15,7 @@
             int jankenCount = 0; // 引き分けも含めてじゃんけんの回数を記録する変数。ここで初期化。
             ShiftCalculation shiftCalculation = new ShiftCalculation();
 
-            GameMaster.Master(); // プレイ回数、人数決定
+            GameMaster.SetNumbersRelateToPlay(); // プレイ回数、人数決定
 
             MakeHandArray makeHandArray = new MakeHandArray();
             Judge judge = new Judge();
@@ -26,7 +26,7 @@
                 // 引き分けの間繰り返す
                 do
                 {
-                    ShiftCalculation.ShiftCalc = 0; // 引き分けの時はここでシフト演算の結果が0に初期化される。
+                    ShiftCalculation.AssignShiftCalcResult = 0; // 引き分けの時はここでシフト演算の結果が0に初期化される。
 
                     Console.WriteLine();
                     Console.WriteLine("---------------------------");

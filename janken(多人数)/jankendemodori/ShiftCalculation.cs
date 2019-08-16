@@ -6,12 +6,12 @@
     public class ShiftCalculation
     {
         private const int ShiftNumber = 1;    // シフト演算に使う2進数の'1'
-        private static int shiftCalc;  // シフト演算の結果をここに代入していく。
+        private static int assignShiftCalcResult;  // シフト演算の結果をここに代入していく。
 
-        public static int ShiftCalc
+        public static int AssignShiftCalcResult
         {
-            get => shiftCalc;
-            set => shiftCalc = value;
+            get => assignShiftCalcResult;
+            set => assignShiftCalcResult = value;
         }
 
         /// <summary>
@@ -22,7 +22,7 @@
         {
             for (int i = 0; i < playersHandArray.Length; i++)
             {
-                ShiftCalc |= ShiftNumber << playersHandArray[i];
+                AssignShiftCalcResult |= ShiftNumber << playersHandArray[i];
             }
         }
     }

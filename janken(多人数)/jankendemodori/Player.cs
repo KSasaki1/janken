@@ -21,7 +21,7 @@ namespace Janken
             {
                 Console.WriteLine();
                 Console.Write("input a number({0}:{1}, {2}:{3}, {4}:{5})>>", nameof(JankenHand.Rock), (int)JankenHand.Rock, nameof(JankenHand.Paper), (int)JankenHand.Paper, nameof(JankenHand.Scissors), (int)JankenHand.Scissors);
-                pHand = GameMaster.CorrectNumber();
+                pHand = GameMaster.TryInputValidNumber();
             }
             while (pHand < (int)JankenHand.Rock || pHand > (int)JankenHand.Scissors);
 
