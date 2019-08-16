@@ -1,6 +1,5 @@
 ﻿namespace Janken
 {
-    // testTEST
     using System;
 
     /// <summary>
