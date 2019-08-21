@@ -42,12 +42,12 @@
         /// <param name="userkind">プレイヤーの種類(プレイヤー、コンピュータ)</param>
         public void StorePlayersResult(string userkind)
         {
-            var arrays = this.GetResultArrays(userkind);
+            var (winCArr, loseCArr, winRArr) = this.GetResultArrays(userkind);
 
-            for (int i = 0; i < arrays.winCArr.Length; i++)
+            for (int i = 0; i < winCArr.Length; i++)
             {
-                arrays.loseCArr[i] = GameMaster.GameCount - arrays.winCArr[i]; // 敗北数計算
-                arrays.winRArr[i] = (float)arrays.winCArr[i] / (float)GameMaster.GameCount; // 勝率計算
+                loseCArr[i] = GameMaster.GameCount - winCArr[i]; // 敗北数計算
+                winRArr[i] = (float)winCArr[i] / (float)GameMaster.GameCount; // 勝率計算
             }
         }
 
@@ -58,11 +58,11 @@
         /// <param name="playersArray">プレイヤーの数だけ要素を格納する配列</param>
         public void ShowPlayersResult(string userkind, int[] playersArray)
         {
-            var arrays = this.GetResultArrays(userkind);
+            var (winCArr, loseCArr, winRArr) = this.GetResultArrays(userkind);
 
             for (int i = 0; i < playersArray.Length; i++)
             {
-                Console.WriteLine($"{userkind}{i + 1:00} >> WIN[{arrays.winCArr[i]}], LOSE[{arrays.loseCArr[i]}], WINRATE[{arrays.winRArr[i]:P}]");
+                Console.WriteLine($"{userkind}{i + 1:00} >> WIN[{winCArr[i]}], LOSE[{loseCArr[i]}], WINRATE[{winRArr[i]:P}]");
             }
         }
 

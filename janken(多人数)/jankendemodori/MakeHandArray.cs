@@ -8,7 +8,7 @@
     public class MakeHandArray
     {
         private static int[] playerHandArray = new int[GameMaster.PlayerCount];        // プレイヤーの出した手を格納する配列。
-        private static int[] computerHandArray = new int[GameMaster.NpcCount];      // コンピューターの出した手を格納する配列。
+        private static int[] computerHandArray = new int[GameMaster.NpcCount];         // コンピューターの出した手を格納する配列。
         private Player phand = new Player();
         private NPCPlayer npchand = new NPCPlayer();
         private Convert convert = new Convert();
