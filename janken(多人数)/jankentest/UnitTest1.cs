@@ -11,7 +11,8 @@ namespace jankentest
         [Description("コンピュータのみの勝負")]
         public void TestMethod1()
         {
-            string resultfile = "Result.text";
+            string resultfile = "Result.txt";
+            
 
             if (System.IO.File.Exists(resultfile))
             {
@@ -22,7 +23,7 @@ namespace jankentest
 
             Jankenmain.Main();
 
-            //Assert.IsTrue(System.IO.File.Exists(resultfile), "結果ファイル作成失敗");
+            Assert.IsTrue(System.IO.File.Exists(resultfile), "結果ファイル作成失敗");
         }
     }
 }
